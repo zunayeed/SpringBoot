@@ -414,7 +414,8 @@ public class LoginController {
 	            model.put("password",password);
 	            return "welcome";
 	        } else {
-	            model.put("errorMessage", "Invalid Credentials Man!!");
+	            model.put("errorMessage", 
+		    "Invalid Credentials, Please enter correct User Name and password");
 	            return "login";
 	        }
 		}
@@ -452,22 +453,15 @@ Welcome ${name}!! and you password is ${password}
 </html>
 			   			Step 
   Annotation used in bean: 
-1)@Component:  to create bean autometically for a particular class and if you use @component annotation for a class, you are requesting spring to manage it
-
-We can use @Component across the application to mark the beans as Spring's managed components. Spring only pick up and registers beans with @Component  and doesn't look for @Service and @Repository in general.
+1)@Component:  to create bean autometically for a particular class and if you use @component annotation for a class, you are requesting spring to manage it. We can use @Component across the application to mark the beans as Spring's managed components. Spring only pick up and registers beans with @Component  and doesn't look for @Service and @Repository in general.
 
 They are registered in ApplicationContext because they themselves are annotated with @Component:
 @Component
-public @interface Service {
-}
-
+public @interface Service {}
 @Component
-public @interface Repository {
-}
-
+public @interface Repository {}
 
 @Service and @Repository are special cases of @Component. They are technically the same but we use them for the different purposes.
-
 
 2)@Service is used for business logic
 3)@Repository for storing data to database, JPA
@@ -513,9 +507,20 @@ If you want to store something across multiple pages, then session comes into pi
 when user types /login. we want to send them back "Hello world"
 
 the way we do : 
-  1) create a login controller class
+  1) create a LoginController class
   2) create a method to map request(/login) 
   3) add annotation to class(@Controller) and method (@RequestMapping  @ResponseBody )
+  4) Create a link list-todos in the welcome jsp page 
+  5)Create a TodoController class with @Controller annotation. It needs TodoService 
+  	* create a TodoService with @Autowired annotation: @Autowired TodoService Service
+	     - import TodoService
+	 * to configure the mapping of /list-todos web reruest, map it to a method with 
+	    @RequestMapping(value="/list-todos, method = RequestMethod.GET) 
+	 * using model.put(), retrieve  service.retrieveTodos()
+	     model.put("todos", service.retrieveTodos("zunayeed"));
+	 * create list-todos.jsp  with  ${todos}
+	  
+  6) 
   
                                    Step 10 
 				   
