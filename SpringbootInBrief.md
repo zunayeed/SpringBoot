@@ -1,8 +1,8 @@
 Question: what is @SpringBootApplication annotation ? 
 Many Spring Boot developers like their apps to use 
-          - auto-configuration, 
-          - component scan and
-          - be able to define extra configuration on their "application class".
+          * auto-configuration, 
+          * component scan and
+          * be able to define extra configuration on their "application class".
          
          A single @SpringBootApplication annotation can be used to enable those three features, that is:
 
@@ -504,7 +504,29 @@ If you want to store something across multiple pages, then session comes into pi
 
 -------------------------------------------------------------------------------------------------------------
 
-when user types /login. we want to send them back "Hello world"
+
+ ---------------------------------------------------------------------------------------------------
+                                             MVC  Architecture
+ *  MVC Model 1 : Browser > JSP > Model
+ Here the request is handled by JSP. JSP forward the request to another JSP, then it goes to model
+ * Model 2: Request(Browser)> Servlet > Model > View . 
+    - In Model 2, request redirects to servlets which are on the server 
+ * Model 2 with Frontcontroller (evoluation): 
+ 
+    Browser > FrontController> Controller1>Model>Controller1>View1>FrontController>Browser
+      - FrontController handles databinding, Handler Mapping, View Resolver and a lot of other    functionality
+     - Here from the browser, request goes directly to a frontcontroller(DispatcherServlet in Spring MVC)
+     - DispatcherServlet redirects the requests to different controller. For example /login to LoginController class. 
+     - Based on URL, frontController decides with controller to go to. Once controller returns the databack, it decides which view to render, then it would send the response back to browser. So all data will be going through the front controller.
+     
+     view lecnology: Velocityu, JSF, FreeMarker, JSP/EL/JSTL
+     WebServices/ AngularJS
+     Strusts/SpringMVC/MVC
+     
+     
+     ----------------------------------------------------------------------------------
+      
+      when user types /login. we want to send them back "Hello world"
 
 the way we do : 
   1) create a LoginController class
@@ -520,8 +542,24 @@ the way we do :
 	     model.put("todos", service.retrieveTodos("zunayeed"));
 	 * create list-todos.jsp  with  ${todos}
 	  
-  6) 
+  6) Add @SessionAttributes("name") annotation in LoginController class and TodoController class, and it will make the name available to all subsequest classes(a way of storing values across multiple classes - Session) . 
+       * Add this line inside  showTodos() of TodoController class
+       String name =  (String)model.get("name");
+		 model.put("todos", service.retrieveTodos(name));
   
-                                   Step 10 
+  ---------------------------------------------------------------------------------
+   - Session is the way to store values across multiple request. 
+   - @SessionAttributes annotation is used to store the model attribute in the session. This annotation is used at controller class level.
+   - Spring’s @SessionAttributes is used on a controller to designate which model attributes should be stored in the session. 
+   - Htttp is a stateless protocol, so if you want to save any values, it need to be stored in server side in the session or some conversational storage.  
+   
+   - Spring documentation states that the @SessionAttributes annotation “list the names of model attributes which should be transparently stored in the session or some conversational storage.”
+   
+   - Why use Model? "adding elements directly to the HttpServletRequest (as request attributes) would seem to serve the same purpose. The reason to do this is obvious when taking a look at one of the requirements we have set for the MVC framework: It should be as view-agnostic as possible, which means we’d like to be able to incorporate view technologies not bound to the HttpServletRequest as well." - Rod Johnson et. al’s book Professional Java Development with the Spring Framework
+  
+      
+ 
+ 
+ 
 				   
   
