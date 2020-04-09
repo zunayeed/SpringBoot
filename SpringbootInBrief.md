@@ -1,4 +1,4 @@
-Question: what is @SpringBootApplication annotation ? 
+# Question: what is @SpringBootApplication annotation ? 
 Many Spring Boot developers like their apps to use 
    *  auto-configuration, 
    *  component scan and
