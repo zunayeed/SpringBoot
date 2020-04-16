@@ -27,7 +27,7 @@ SpringApplication.run(Application.class, args);
     
     
 ### Step 2: 
-@RequestMapping(value = "/login", method = RequestMethod.GET)
+`@RequestMapping(value = "/login", method = RequestMethod.GET)`
 http://localhost:8080/login
 Question:  Why `@ResponseBody` annotation is usedf for?
 Answer:  The `@ResponseBody` annotation tells a controller that the object returned is automatically serialized into JSON and passed back into the HttpResponse object.
@@ -49,23 +49,19 @@ spring is popular because
            3) Architectural flexibility: strong modular concept 
            4) Follows current trend: spring boot helps develpo microservices very easily
 
-Maven is used to manage the dependency of Java projects 
-
-Springboot is one of the popular spring framework to develop micro services.
-Group Id: package name 
-Artifact Id: class name
-
-SpringApplication.run launches a Springboot Application
-
-spring-boot-starter-parent has all default configuration of all important maven dependencies
-
-Spring Boot Starter Web provides: 1) all dependies to run web applications: core, mvc, validation,login 
+- Maven is used to manage the dependency of Java projects 
+- Springboot is one of the most popular spring framework to develop micro services.
+- Group Id: package name 
+- Artifact Id: class name
+- SpringApplication.run launches a Springboot Application
+- `spring-boot-starter-parent` has all default configuration of all important maven dependencies
+- Spring Boot Starter Web provides: 1) all dependies to run web applications: core, mvc, validation,login 
 Dev tools helps developer in saving time
 
-MVC: 
-1)  when dispatcher servlet sees that a request is coming to  /login, it sends the request to it sends the request to LoginController's loginMessage method because /login is mapped to it. 
+## MVC: 
+1.  When dispatcher servlet receives  a request  coming as  `/login`, it sends the request to  LoginController's loginMessage method because `/login` is mapped to it. 
 
-    dispatcher servlet gets this login, and due to @ResponseBody, dispatcher servlet will directly return this content to the browser.
+2. dispatcher servlet gets this login, and due to @ResponseBody, dispatcher servlet will directly return this content to the browser.
 
       dispatcherServlet does not know the path of login.jsp. It search for a view named "login".
 
@@ -73,17 +69,17 @@ MVC:
       login.jsp path:  /src/main/webapp/WEB-INF/jsp/login.jsp . 
       "login"  =>  /src/main/webapp/WEB-INF/jsp/login.jsp 
 
-> 	Now the view resolver concept comes into picture. Whenever controller return login, it need to map in to specific login.jsp file.  
-		"login"  =>  /src/main/webapp/WEB-INF/jsp/login.jsp 
+Now the view resolver concept comes into picture. Whenever controller return login, it need to map in to specific login.jsp file.  
+	
  In spring, we use application.properties, by using a view resolver
 		Second Snippet(Location of application.properties file):     
-		                        -/src/main/resources/application.properties
+		                     `   -/src/main/resources/application.properties`
 Code addressed in  application.properties file: 
-**
+```properties
 		spring.mvc.view.prefix: /WEB-INF/jsp/
 		spring.mvc.view.suffix: .jsp
 		logging.level.: DEBUG
-**
+```
 Question: What is **viewResolver**? 
 
 View Resolvers are usually provided by all MVC Frameworks, so that models can be rendered in a browser, without being tied to a specific view technology. Spring MVC Framework provides the ViewResolver interface, that maps view names to actual views.
