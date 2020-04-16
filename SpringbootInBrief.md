@@ -21,20 +21,19 @@ public class Application {
 
 public static void main(String[] args) {
 SpringApplication.run(Application.class, args);
-
 ```
-    
-In summary, @SpringBootApplication initalizes Spring(ComponentScan) and SpringBoot(AutoConfiguration).
-    
-    >>>   SpringApplication.run launches a Springboot application
+
+- SpringApplication.run launches a Springboot application
     
     
-    Step 2: 
+### Step 2: 
 @RequestMapping(value = "/login", method = RequestMethod.GET)
 http://localhost:8080/login
-Question:  Why @ResponseBody?
-Answer:  @ResponseBody
-The @ResponseBody annotation tells a controller that the object returned is automatically serialized into JSON and passed back into the HttpResponse object.
+Question:  Why `@ResponseBody` annotation is usedf for?
+Answer:  The `@ResponseBody` annotation tells a controller that the object returned is automatically serialized into JSON and passed back into the HttpResponse object.
+`@ResponseBody` is a Spring **annotation** which binds a method return value to the web **response body**. It is not interpreted as a view name. It uses HTTP Message converters to convert the return value to HTTP ****response body**, based on the content-type in the request HTTP header
+[!](https://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png)
+
 Important of RequestMapping method
     //How do web applications work? Request and Response
     //Browser sends Http Request to Web Server
@@ -43,9 +42,9 @@ Important of RequestMapping method
 
 ----------------------------------------------------------------------------------------------------------------------
 spring is popular because 
-	    1) it enables writing testable codes
-	           enables to write good unit test so easily
-	   2) no plumbing code: trycatch block, lots of line of code, but in spring it is almost nothin
+	    1) Enables writing testable codes
+	          - enables  writing good unit test so easily
+	   2) No plumbing code: trycatch block, lots of line of code, but in spring it is almost nothin
            3) Architectural flexibility: strong modular concept 
            4) Follows current trend: spring boot helps develpo microservices very easily
 
