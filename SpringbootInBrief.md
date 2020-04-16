@@ -32,7 +32,8 @@ http://localhost:8080/login
 Question:  Why `@ResponseBody` annotation is usedf for?
 Answer:  The `@ResponseBody` annotation tells a controller that the object returned is automatically serialized into JSON and passed back into the HttpResponse object.
 `@ResponseBody` is a Spring **annotation** which binds a method return value to the web **response body**. It is not interpreted as a view name. It uses HTTP Message converters to convert the return value to HTTP ****response body**, based on the content-type in the request HTTP header
-[!](https://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png)
+
+![MVC-Flow](https://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png)
 
 Important of RequestMapping method
     //How do web applications work? Request and Response
