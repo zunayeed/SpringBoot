@@ -361,7 +361,7 @@ public class LoginController {
                            Hard coded validation!!
 			   
  a) LoginController Class:  
-
+```
 @Controller
 public class LoginController {
 	
@@ -385,6 +385,7 @@ public class LoginController {
 	        }
 		}
 	}
+```
 b)Login validation in separate class: 
 ```java
 @Component
@@ -410,6 +411,7 @@ c) login.jsp:
 ```
 
 d) Welcome.jsp: 
+```
 </form>
 </body>
 </html>
@@ -421,6 +423,7 @@ d) Welcome.jsp:
 Welcome ${name}!! and you password is ${password}
 </body>
 </html>
+```
 			   			Step 
   Annotation used in bean: 
 1. @Component:  to create bean autometically for a particular class and if you use @component annotation for a class, you are requesting spring to manage it. We can use @Component across the application to mark the beans as Spring's managed components. Spring only pick up and registers beans with @Component  and doesn't look for @Service and @Repository in general.
@@ -464,38 +467,36 @@ This(@Controller) annotation serves as a specialization of @Component,allowing f
 Note that all these four annotations are in package org.springframework.stereotype and part of spring-context jar.
 
 Most of the time our component classes will fall under one of its three specialized annotations, so you may not use @Component annotation a lot
+Spring framework is all about finding your component and autowiring components. If you want to store something across multiple pages, then session comes into picture.
 
-
-
-
-
->>>> Spring framework is all about finding your component and autowiring components. 
-
-If you want to store something across multiple pages, then session comes into picture.
-
--------------------------------------------------------------------------------------------------------------
-
-
- ---------------------------------------------------------------------------------------------------
-                                             MVC  Architecture
+  ## MVC  Architecture
  *  MVC Model 1 : Browser > JSP > Model
  Here the request is handled by JSP. JSP forward the request to another JSP, then it goes to model
  * Model 2: Request(Browser)> Servlet > Model > View . 
     - In Model 2, request redirects to servlets which are on the server 
- * Model 2 with Frontcontroller (evoluation): 
- 
+ * Model 2 with Frontcontroller (evoluation):  
  - Browser > FrontController> Controller1>Model>Controller1>View1>FrontController>Browser
       - FrontController handles databinding, Handler Mapping, View Resolver and a lot of other    functionality
      - Here from the browser, request goes directly to a frontcontroller(DispatcherServlet in Spring MVC)
      - DispatcherServlet redirects the requests to different controller. For example /login to LoginController class. 
-     - Based on URL, frontController decides with controller to go to. Once controller returns the databack, it decides which view to render, then it would send the response back to browser. So all data will be going through the front controller.
-     
+     - Based on URL, frontController decides with controller to go to. Once controller returns the databack, it decides which view to render, then it would send the response back to browser. So all data will be going through the front controller.    
      - view lecnology: Velocityu, JSF, FreeMarker, JSP/EL/JSTL
      - WebServices/ AngularJS
     -  Strusts/SpringMVC/MVC
      
-     
-     ----------------------------------------------------------------------------------
+    
+   ##  Session is the way to store values across multiple request. 
+   
+   * **@SessionAttributes** annotation is used to store the model attribute in the session. 
+     - used at controller class level.
+   - Spring’s @SessionAttributes is used on a controller to designate which model attributes should be stored in the session. 
+   - Htttp is a stateless protocol, so if you want to save any values, it need to be stored in server side in the session or some conversational storage.  
+   
+   - Spring documentation states that the @SessionAttributes annotation “list the names of model attributes which should be transparently stored in the session or some conversational storage.”
+   
+   - Why use Model? "adding elements directly to the HttpServletRequest (as request attributes) would seem to serve the same purpose. The reason to do this is obvious when taking a look at one of the requirements we have set for the MVC framework: It should be as view-agnostic as possible, which means we’d like to be able to incorporate view technologies not bound to the HttpServletRequest as well." - Rod Johnson et. al’s book Professional Java Development with the Spring Framework
+  
+       ----------------------------------------------------------------------------------
       
       when user types /login. we want to send them back "Hello world"
 
@@ -519,18 +520,6 @@ the way we do :
 		  `model.put("todos", service.retrieveTodos(name)); `
   
   ---------------------------------------------------------------------------------
-   ##  Session is the way to store values across multiple request. 
-   
-   * **@SessionAttributes** annotation is used to store the model attribute in the session. 
-        - used at controller class level.
-   - Spring’s @SessionAttributes is used on a controller to designate which model attributes should be stored in the session. 
-   - Htttp is a stateless protocol, so if you want to save any values, it need to be stored in server side in the session or some conversational storage.  
-   
-   - Spring documentation states that the @SessionAttributes annotation “list the names of model attributes which should be transparently stored in the session or some conversational storage.”
-   
-   - Why use Model? "adding elements directly to the HttpServletRequest (as request attributes) would seem to serve the same purpose. The reason to do this is obvious when taking a look at one of the requirements we have set for the MVC framework: It should be as view-agnostic as possible, which means we’d like to be able to incorporate view technologies not bound to the HttpServletRequest as well." - Rod Johnson et. al’s book Professional Java Development with the Spring Framework
-  
-      
  
  
  
