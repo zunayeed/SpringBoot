@@ -243,10 +243,8 @@ public class LoginController {
 	public String loginMessage(@RequestParam String name, ModelMap model) {
 		model.put("name", name);
 		System.out.println("name is" + name);
-		return "login" ; 
-		
+		return "login" ; 		
 	}
-
 }
 ```
 
@@ -486,9 +484,9 @@ Spring framework is all about finding your component and autowiring components. 
      
     
    ##  Session is the way to store values across multiple request. 
-   
    * **@SessionAttributes** annotation is used to store the model attribute in the session. 
      - used at controller class level.
+           - ut
    - Spring’s @SessionAttributes is used on a controller to designate which model attributes should be stored in the session. 
    - Htttp is a stateless protocol, so if you want to save any values, it need to be stored in server side in the session or some conversational storage.  
    
