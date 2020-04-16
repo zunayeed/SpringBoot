@@ -124,12 +124,12 @@ Answer: Get method is not secure, we can see data in the url. in internet data t
 
 
                                                   Useful Annotation used in bean: 
-1)@Component:  to create bean autometically for a particular class and if you use @component annotation for a class, you are requesting spring to manage it
-2)@Service is used for business logic
-3)@Repository for storing data to database, JPA
-4)@Controller - if bean handle request from browser
-5)@Autowired - to declare dependent componet of bean, 
-6)@ComponentScan @SpringbootApplication has componenscan builtin - spring search component within the package
+1. @Component:  to create bean autometically for a particular class and if you use @component annotation for a class, you are requesting spring to manage it
+2. @Service is used for business logic
+3. @Repository for storing data to database, JPA
+4. @Controller - if bean handle request from browser
+5. @Autowired - to declare dependent componet of bean, 
+6. @ComponentScan @SpringbootApplication has componenscan builtin - spring search component within the package
 
 **Spring framework is all about finding your component and autowiring components.** 
 
@@ -140,9 +140,9 @@ Answer: Get method is not secure, we can see data in the url. in internet data t
 when user types /login. we want to send them back "Hello world"
 
 the way we do : 
-  1) create a login controller class
-  2) create a method to map request(/login) 
-  3) add annotation to class(@Controller) and method (@RequestMapping  @ResponseBody )
+1. create a login controller class
+2. create a method to map request(/login) 
+3. add annotation to class(@Controller) and method (@RequestMapping  @ResponseBody )
                
 ```java               
 package com.zunayeed.springboot.web.controller;
@@ -252,7 +252,7 @@ public class LoginController {
 
 b) file is in jsp: 
 
-                          src/main/webapp/WEB-INF/jsp/login.jsp
+```                          src/main/webapp/WEB-INF/jsp/login.jsp
 <html>
 <head>
 <title>Welcome to Login Portal</title>
@@ -263,9 +263,9 @@ Here you will get value from model ${name}
 </body>
 </html>
 
+```
 
 
-.................>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
                                            Spring MVC Request Flow
 1. DispatcherServlet receives HTTP Request.
@@ -279,13 +279,10 @@ Here you will get value from model ${name}
 7. DispatcherServlet makes the model available to view and executes it.
 8. DispatcherServlet returns HTTP Response Back.
  ![center](http://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png)
-
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                Question: what is @RequestMapping Annotation ? What is its use ? 
-
-Spring @RequestMapping  annotation maps HTTP requests to handler methods of MVC and REST controllers.
-
-In Spring MVC applications, the RequestDispatcher (Front Controller Below) servlet is responsible for routing incoming HTTP requests to handler methods of controllers.When configuring Spring MVC, you need to specify the mappings between the requests and handler methods.
+ 
+##Question: what is @RequestMapping Annotation ? What is its use ? 
+- Spring @RequestMapping  annotation maps HTTP requests to handler methods of MVC and REST controllers.
+- In Spring MVC applications, the RequestDispatcher (Front Controller Below) servlet is responsible for routing incoming HTTP requests to handler methods of controllers.When configuring Spring MVC, you need to specify the mappings between the requests and handler methods.
 
 To configure the mapping of web requests, you use the @RequestMapping annotation.The @RequestMapping annotation can be applied to class-level and/or method-level in a controller.The class-level annotation maps a specific request path or pattern onto a controller. You can then apply additional method-level annotations to make mappings more specific to handler methods.
 
@@ -295,7 +292,7 @@ To configure the mapping of web requests, you use the @RequestMapping annotation
 The Spring MVC @RequestMapping annotation is capable of handling HTTP request methods, such as GET, PUT, POST, DELETE, and PATCH.
 By default all requests are assumed to be of HTTP GET type.
 In order to define a request mapping with a specific HTTP method, you need to declare the HTTP method in @RequestMapping using the method element as follows.
-
+```java
 @RestController
 @RequestMapping("/home")
 public class IndexController {
@@ -320,25 +317,23 @@ public class IndexController {
     return "Hello from patch";
   }
 }
-
+```
 In the code snippet above, the method element of the @RequestMapping annotations indicates the HTTP method type of the HTTP request.
-
 All the handler methods will handle requests coming to the same URL ( /home), but will depend on the HTTP method being used.
-
 For example, a POST request to /home will be handled by the post() method. While a DELETE request to /home will be handled by the delete() method.
 
-                                     @RequestMapping Shortcuts
+## @RequestMapping Shortcuts
 				     
-Spring 4.3 introduced method-level variants, also known as composed annotations of @RequestMapping. The composed annotations better express the semantics of the annotated methods. They act as wrapper to @RequestMapping and have become the standard ways of defining the endpoints.
+**Spring 4.3** introduced method-level variants, also known as composed annotations of **@RequestMapping**. The composed annotations better express the semantics of the annotated methods. They act as wrapper to @RequestMapping and have become the standard ways of defining the endpoints.
 
-For example, @GetMapping is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.GET).
+For example, **@GetMapping is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.GET).**
 The method level variants are:
 
-@GetMapping
-@PostMapping
-@PutMapping
-@DeleteMapping
-@PatchMapping
+- @GetMapping
+- @PostMapping
+- @PutMapping
+- @DeleteMapping
+- @PatchMapping
 
 
           >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -391,14 +386,17 @@ public class LoginController {
 		}
 	}
 b)Login validation in separate class: 
-
+```java
 @Component
 public class LoginService {
 	 public boolean validateUser(String user, String password) {
 	        return user.equalsIgnoreCase("zunayeed") && password.equals("dummy");
 	    }
 }
+```
 c) login.jsp: 
+
+```
 <html>
 <head>
 <title>Welcome to Login Portal</title>
@@ -409,6 +407,8 @@ c) login.jsp:
   Name : <input type="text" name = "name" /> 
   		 <input type="password" name = "password" />
   		<input type = "submit"/> 
+```
+
 d) Welcome.jsp: 
 </form>
 </body>
@@ -423,7 +423,7 @@ Welcome ${name}!! and you password is ${password}
 </html>
 			   			Step 
   Annotation used in bean: 
-1)@Component:  to create bean autometically for a particular class and if you use @component annotation for a class, you are requesting spring to manage it. We can use @Component across the application to mark the beans as Spring's managed components. Spring only pick up and registers beans with @Component  and doesn't look for @Service and @Repository in general.
+1. @Component:  to create bean autometically for a particular class and if you use @component annotation for a class, you are requesting spring to manage it. We can use @Component across the application to mark the beans as Spring's managed components. Spring only pick up and registers beans with @Component  and doesn't look for @Service and @Repository in general.
 
 They are registered in ApplicationContext because they themselves are annotated with @Component:
 @Component
@@ -433,13 +433,13 @@ public @interface Repository {}
 
 @Service and @Repository are special cases of @Component. They are technically the same but we use them for the different purposes.
 
-2)@Service is used for business logic
-3)@Repository for storing data to database, JPA
+2. @Service is used for business logic
+3. @Repository for storing data to database, JPA
   @Repository’s job is to catch persistence specific exceptions and rethrow them as one of Spring’s unified unchecked exception.
-4)@Controller - if bean handle request from browser
-5)@Autowired - to declare dependent componet of bean, 
+4. @Controller - if bean handle request from browser
+5. @Autowired - to declare dependent componet of bean, 
 	     - without autowired, we get null pointer exception.
-6)@ComponentScan:   @SpringbootApplication has componenscan builtin 
+6. @ComponentScan:   @SpringbootApplication has componenscan builtin 
 	            - spring search component within the package
 		    - if you create component outside of package, it will not be autowired. 
 
@@ -447,13 +447,14 @@ public @interface Repository {}
 				      
 In layman terms, a Component is responsible for some operations. Spring framework provides three other specific annotations to be used when marking a class as Component.
 
-a)@Service: Denotes that the class provides some services. Our utility classes can be marked as Service classes.
+1. @Service: Denotes that the class provides some services. Our utility classes can be marked as Service classes.
 
-b)@Repository: This annotation indicates that the class deals with CRUD operations, usually it’s used with DAO implementations that deal with database tables. 
+1. @Repository: This annotation indicates that the class deals with CRUD operations, usually it’s used with DAO implementations that deal with database tables. 
            - used in terms of data store
 
-c)@Controller: Mostly used with web applications or REST web services to specify that the class is a front controller and responsible to handle user request and return appropriate response.
+1. @Controller: Mostly used with web applications or REST web services to specify that the class is a front controller and responsible to handle user request and return appropriate response.
           -if you are having request from browser, then @Controller
+	  
 Indicates that an annotated class is a "Controller" (e.g. a web controller). 
 
 This(@Controller) annotation serves as a specialization of @Component,allowing for implementation classes to be autodetected through classpath scanning.It is typically used in combination with annotated handler methods based on the org.springframework.web.bind.annotation.RequestMapping annotation.
@@ -483,15 +484,15 @@ If you want to store something across multiple pages, then session comes into pi
     - In Model 2, request redirects to servlets which are on the server 
  * Model 2 with Frontcontroller (evoluation): 
  
-    Browser > FrontController> Controller1>Model>Controller1>View1>FrontController>Browser
+ - Browser > FrontController> Controller1>Model>Controller1>View1>FrontController>Browser
       - FrontController handles databinding, Handler Mapping, View Resolver and a lot of other    functionality
      - Here from the browser, request goes directly to a frontcontroller(DispatcherServlet in Spring MVC)
      - DispatcherServlet redirects the requests to different controller. For example /login to LoginController class. 
      - Based on URL, frontController decides with controller to go to. Once controller returns the databack, it decides which view to render, then it would send the response back to browser. So all data will be going through the front controller.
      
-     view lecnology: Velocityu, JSF, FreeMarker, JSP/EL/JSTL
-     WebServices/ AngularJS
-     Strusts/SpringMVC/MVC
+     - view lecnology: Velocityu, JSF, FreeMarker, JSP/EL/JSTL
+     - WebServices/ AngularJS
+    -  Strusts/SpringMVC/MVC
      
      
      ----------------------------------------------------------------------------------
@@ -512,14 +513,16 @@ the way we do :
 	     model.put("todos", service.retrieveTodos("zunayeed"));
 	 * create list-todos.jsp  with  ${todos}
 	  
-  6) Add @SessionAttributes("name") annotation in LoginController class and TodoController class, and it will make the name available to all subsequest classes(a way of storing values across multiple classes - Session) . 
+  6) Add `@SessionAttributes("name")` annotation in LoginController class and TodoController class, and it will make the name available to all subsequest classes(a way of storing values across multiple classes - Session) . 
        * Add this line inside  showTodos() of TodoController class
-       String name =  (String)model.get("name");
-		 model.put("todos", service.retrieveTodos(name));
+                 ` String name =  (String)model.get("name");`
+		  `model.put("todos", service.retrieveTodos(name)); `
   
   ---------------------------------------------------------------------------------
-   - Session is the way to store values across multiple request. 
-   - @SessionAttributes annotation is used to store the model attribute in the session. This annotation is used at controller class level.
+   ##  Session is the way to store values across multiple request. 
+   
+   * **@SessionAttributes** annotation is used to store the model attribute in the session. 
+        - used at controller class level.
    - Spring’s @SessionAttributes is used on a controller to designate which model attributes should be stored in the session. 
    - Htttp is a stateless protocol, so if you want to save any values, it need to be stored in server side in the session or some conversational storage.  
    
