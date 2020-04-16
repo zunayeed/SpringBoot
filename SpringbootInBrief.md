@@ -518,6 +518,9 @@ the way we do :
 		  `model.put("todos", service.retrieveTodos(name)); `
   
   ----------------------------------------------------------------------------------
+  
+  
+  ![image](https://raw.githubusercontent.com/iPraBhu/ADevGuide/master/Resources/Spring%20Annotations%20Cheat%20Sheet%20ADevGuide.jpg)
  
  
  
