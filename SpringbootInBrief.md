@@ -28,7 +28,7 @@ SpringApplication.run(Application.class, args);
     
 ### Step 2: 
 `@RequestMapping(value = "/login", method = RequestMethod.GET)`
-http://localhost:8080/login
+ ` http://localhost:8080/login`
 Question:  Why `@ResponseBody` annotation is usedf for?
 Answer:  The `@ResponseBody` annotation tells a controller that the object returned is automatically serialized into JSON and passed back into the HttpResponse object.
 `@ResponseBody` is a Spring **annotation** which binds a method return value to the web **response body**. It is not interpreted as a view name. It uses HTTP Message converters to convert the return value to HTTP ****response body**, based on the content-type in the request HTTP header
@@ -80,45 +80,44 @@ Code addressed in  application.properties file:
 		spring.mvc.view.suffix: .jsp
 		logging.level.: DEBUG
 ```
-Question: What is **viewResolver**? 
+### Question: What is **viewResolver**? 
 
-View Resolvers are usually provided by all MVC Frameworks, so that models can be rendered in a browser, without being tied to a specific view technology. Spring MVC Framework provides the ViewResolver interface, that maps view names to actual views.
+- provided by all MVC Frameworks, 
+- Render models to browser, 
+- without being tied to a specific view technology. 
+- Spring MVC Framework provides the ViewResolver interface, that maps view names to actual views.
 
-It also provides the View interface, which addresses the request of a view to the view technology. So when a ModelAndView instance is returned by a Controller, the view resolver will resolve the view according to the view
-------------------------------------------------------------------------
+It also provides the View interface, which addresses the request of a view to the view technology. So, when a ModelAndView instance is returned by a Controller, the view resolver will resolve the view according to the view.
 
-but still we do not see the jsp page
-     Third Snippet : To enable jsp support in embedded tomcat server!
-In order to add jsp support for the tomcat jsp server, add  tomcat-embed-jasper dependency in the pom.xml file. 
-
+* Enabling jsp support in embedded tomcat server: **add  tomcat-embed-jasper dependency** in the pom.xml file. 
+```
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
-Still no update, because springboot developer tools can only handle changes within the application. When we change pom.xml, we are changing the dependency, or jar files. In this kind of situation, we need to restart the whole application
-
+```
+Still no update, because springboot developer tools can only handle changes within the application. When we change pom.xml, we are changing the dependency, or jar files. In this kind of situation, we **need to restart** the whole application.
+```
    	server.port=8082
 	spring.mvc.view.prefix=/jsp/
 	spring.mvc.view.suffix=  .jsp
 	logging.level.org.springframework.web: DEBUG
+```
 
 > when we pass variable to chrome address bar in login, how does it go to controller ? at controller, we use @RequestParam annotation, so we want to bind the request parameter, in import it is web.bind.annotation.RequestParam
    get request > controller > view 
 then it shows the result in the console, not in jsp view. in order to make it available to view, in spring mvc we use model .
 
+ **Model** is used to pass data from controller to view (JSP). So, we need to put the data in the model so that we can pass it to the view. 
 
+Controller controls the entire flow, once it has data, it puts it to the model, and redirects it to the view. The view uses the model to render the data. 
 
-
- Model is used to pass data from controller to view (JSP). So, we need to put the data in the model so that we can pass it to the view. 
-
-So the controller controls the entire flow, once it has some data, it puts it to the model, and redirects it to the view. The view uses the model to render the data. 
-
-So once the name through the @RequestParam annotation comes into the controller, we need to put it in model. In order to put it in model, we  need to have ModelMap object passed in to the method parameter. As a argument of  model.put()passed as input parameter, we mention the attribute and value. So, whatever you mention in the put, it will be available in the jsp. So, in order to access the value of variable in JSP, we use expression language ${<variable_name>}
+So, once the name through the @RequestParam annotation comes into the controller, we need to put it in model. In order to put it in model, we  need to have ModelMap object passed in to the method parameter. As a argument of  model.put()passed as input parameter, we mention the attribute and value. So, whatever you mention in the put, it will be available in the jsp. So, in order to access the value of variable in JSP, we use expression language ${<variable_name>}
 
 Any request that comes to web application, it comes to the front controller. 
 
-                                      Spring MVC Request Flow: 
+ # Spring MVC Request Flow: 
 1)DispatcherServlet receives HTTP Request.
 2) DispatcherServlet identifies the right Controller based on the URL.
 3)Controller executes Business Logic.
@@ -127,7 +126,7 @@ Any request that comes to web application, it comes to the front controller.
 6)DispatcherServlet makes the model available to view and executes it.
 7)DispatcherServlet returns HTTP Response Back.
 
-    Flow : http://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png
+ ![center](http://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png)
 
 
 view resolver maps logical name to a physical jsp 
