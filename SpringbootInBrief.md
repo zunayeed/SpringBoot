@@ -81,7 +81,7 @@ Code addressed in  application.properties file:
 		logging.level.: DEBUG
 ```
 ### Question: What is **viewResolver**? 
-
+View Resolver function: view resolver maps logical name to a physical jsp 
 - provided by all MVC Frameworks, 
 - Render models to browser, 
 - without being tied to a specific view technology. 
@@ -117,25 +117,13 @@ So, once the name through the @RequestParam annotation comes into the controller
 
 Any request that comes to web application, it comes to the front controller. 
 
- # Spring MVC Request Flow: 
-1)DispatcherServlet receives HTTP Request.
-2) DispatcherServlet identifies the right Controller based on the URL.
-3)Controller executes Business Logic.
-4)Controller returns a) Model b) View Name Back to DispatcherServlet.
-5)DispatcherServlet identifies the correct view (ViewResolver).
-6)DispatcherServlet makes the model available to view and executes it.
-7)DispatcherServlet returns HTTP Response Back.
-
  ![center](http://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png)
-
-
-view resolver maps logical name to a physical jsp 
 
 Question:  Why Get Method is not secure? 
 Answer: Get method is not secure, we can see data in the url. in internet data travels from router to router, so data can be seen easily. So the ideal solution is using post. 
 
 
-                                                  Annotation used in bean: 
+                                                  Useful Annotation used in bean: 
 1)@Component:  to create bean autometically for a particular class and if you use @component annotation for a class, you are requesting spring to manage it
 2)@Service is used for business logic
 3)@Repository for storing data to database, JPA
@@ -143,9 +131,9 @@ Answer: Get method is not secure, we can see data in the url. in internet data t
 5)@Autowired - to declare dependent componet of bean, 
 6)@ComponentScan @SpringbootApplication has componenscan builtin - spring search component within the package
 
-Spring framework is all about finding your component and autowiring components. 
+**Spring framework is all about finding your component and autowiring components.** 
 
-If you want to store something across multiple pages, then session comes into picture.
+**If you want to store something across multiple pages, then session comes into picture.**
 
 -------------------------------------------------------------------------------------------------------------
 
@@ -155,14 +143,9 @@ the way we do :
   1) create a login controller class
   2) create a method to map request(/login) 
   3) add annotation to class(@Controller) and method (@RequestMapping  @ResponseBody )
-  
-  
-                 
-                 
-                 
-                                    Code To Demonstrate : 
+               
+```java               
 package com.zunayeed.springboot.web.controller;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -175,30 +158,19 @@ public class LoginController {
 	@RequestMapping("/login")
 	@ResponseBody 
 	public String loginMessage() {
-		return "Hello Zuayeed, Welcome to springboot applications: " + (a+b) ; 
-		
+		return "Hello Zuayeed, Welcome to springboot applications: " + (a+b) ; 		
 	}
-
 }
-
-
-
-
-
+```
 
 
 >>>>      To see spring level debug: 
-                                     src/main/resources/application.properties
-                                      logging.level.org.springframework.web: DEBUG
+                                    ` src/main/resources/application.properties`
+                                    `  logging.level.org.springframework.web: DEBUG`
 
-                              4  What You Will Learn during this Step:
-Your First JSP
-There is a bit of setup before we get there!
-Introduction to View Resolver
-Useful Snippets and References
-  1) Set up login.jsp file : 
+ 1) Set up login.jsp file : 
 First Snippet - /src/main/webapp/WEB-INF/jsp/login.jsp
-
+```html
 <html>
 <head>
 <title>Yahoo!!</title>
@@ -207,6 +179,7 @@ First Snippet - /src/main/webapp/WEB-INF/jsp/login.jsp
 My First JSP!!!
 </body>
 </html>
+```
 2) add dependency to application.properties file 
 Second Snippet - /src/main/resources/application.properties
 
@@ -216,12 +189,13 @@ logging.level.: DEBUG
 
 3) to enable jsp support, add the dependency
 Third Snippet : To enable jsp support in embedded tomcat server!
-
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <scope>provided</scope>
-        </dependency>
+```
+<dependency>
+<groupId>org.apache.tomcat.embed</groupId>
+<artifactId>tomcat-embed-jasper</artifactId>
+<scope>provided</scope>
+</dependency>
+```
         
         
         
@@ -236,23 +210,22 @@ My First JSP!!! My name is ${name}
 
           >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
      
-  Question:  What is @RequestParam in spring?
-Answer: 
-       Spring MVC RequestParam Annotation:  In Spring MVC, the @RequestParam annotation is used to read the form data and bind it automatically to the parameter present in the provided method. So, it ignores the requirement of HttpServletRequest object to read the provided data.
+## Question:  What is @RequestParam in spring?
+Spring MVC RequestParam Annotation:  In Spring MVC, the @RequestParam annotation is used to read the form data and bind it automatically to the parameter present in the provided method. So, it ignores the requirement of HttpServletRequest object to read the provided data.
        
- >>>>>>>> Model is used to pass data from controller to view(JSP).  
-       So, we need to put the data in the model so that we can pass it to the view. So the controller controls the entire flow, once it has some data, it puts it to the model, and model redirects it(data) to the view. The view uses the model to render the data. 
+ **Model is used to pass data from controller to view(JSP).**  
+ we need to put the data in the model so that we can pass it to the view. So the controller controls the entire flow, once it has some data, it puts it to the model, and model redirects it(data) to the view. The view uses the model to render the data. 
 
 So, once the data(String name) -through the @RequestParam annotation- comes into the controller, we need to put it in model. In order to put it in model, we  need to have ModelMap object(ModelMap model) passed in to the @RequestMapping-annotated-method parameter as an input argument.
 
 
-In model.put("name", value)  we mention the attribute and value as name of parameter as name. 
+In `model.put("name", value); `,  we mention the attribute and value as name of parameter as name. 
 
 So whatever you mention in the model.put("name", value), it will be available in the jsp. So, in order to access the value of variable in JSP(login.jsp) , we use expression language ${<variable_name>} ${name}
 
 In brief 
  a ) the steps in controller
- 
+ ```java
 package com.zunayeed.springboot.web.controller;
 
 import org.springframework.stereotype.Controller;
@@ -275,6 +248,7 @@ public class LoginController {
 	}
 
 }
+```
 
 b) file is in jsp: 
 
@@ -294,17 +268,17 @@ Here you will get value from model ${name}
 .................>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
                                            Spring MVC Request Flow
-DispatcherServlet receives HTTP Request.
-DispatcherServlet identifies the right Controller based on the URL mapping
-Controller executes Business Logic.and puts data into model 
-Controller returns a) Model b) View Name Back to DispatcherServlet.
-DispatcherServlet identifies the correct view (ViewResolver).
-Viewresolver maps logical name to physical jsp using the help from application.properties file.
+1. DispatcherServlet receives HTTP Request.
+2. DispatcherServlet identifies the right Controller based on the URL mapping
+3. Controller executes Business Logic.and puts data into model 
+4. Controller returns **a) Model b) View Name** Back to DispatcherServlet.
+5. DispatcherServlet identifies the correct view (ViewResolver).
+6. Viewresolver maps logical name to physical jsp using the help from application.properties file.
         spring.mvc.view.prefix: /WEB-INF/jsp/
         spring.mvc.view.suffix: .jsp
-DispatcherServlet makes the model available to view and executes it.
-DispatcherServlet returns HTTP Response Back.
-Flow : http://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png
+7. DispatcherServlet makes the model available to view and executes it.
+8. DispatcherServlet returns HTTP Response Back.
+ ![center](http://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png)
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                 Question: what is @RequestMapping Annotation ? What is its use ? 
