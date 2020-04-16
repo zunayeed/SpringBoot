@@ -1,8 +1,8 @@
 # Question: what is @SpringBootApplication annotation ? 
 Many Spring Boot developers like their apps to use 
-   *  auto-configuration, 
-   *  component scan and
-   *  be able to define extra configuration on their "application class".
+*  auto-configuration, 
+*  component scan and
+*  be able to define extra configuration on their "application class".
          
          A single @SpringBootApplication annotation can be used to enable those three features, that is:
 
