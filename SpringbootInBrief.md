@@ -522,7 +522,74 @@ the way we do :
   
   ![image](https://raw.githubusercontent.com/iPraBhu/ADevGuide/master/Resources/Spring%20Annotations%20Cheat%20Sheet%20ADevGuide.jpg)
  
+ * step 13: 
+ A better option is using the prefix redirect: – the redirect view name is injected into the controller like any other logical view name. The controller is not even aware that redirection is happening.
  
- 
-				   
+ ```
+ @RequestMapping(value="/add-todo", method = RequestMethod.POST)
+	public String addTodo(ModelMap model, @RequestParam String desc){
+		service.addTodo((String) model.get("name"), desc, new Date(), false);
+		return "redirect:/list-todos";
+	}
+```
+ # step 14
+ ## What we will do:
+- Display Todos in a table using JSTL Tags
+- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+- Add Dependency for jstl
+
+## Snippet
+```       
+       <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+```
+		
+# Step 15	
+## webjars
+WebJars are client side dependencies packaged into JAR archive files. They work with most JVM containers and web frameworks.
+This question has a very simple answer – because it's easy.
+
+Manually adding and managing client side dependencies often results in difficult to maintain codebases.
+
+Also, most Java developers prefer to use Maven and Gradle as build and dependency management tools.
+
+The main problem WebJars solves is making client side dependencies available on Maven Central and usable in any standard Maven project.
+
+Here are a few interesting advantages of WebJars:
+
+1. We can explicitly and easily manage the client-side dependencies in JVM-based web applications
+2. We can use them with any commonly used build tool, eg: Maven, Gradle, etc
+3. WebJars behave like any other Maven dependency – which means that we get transitive dependencies as well
+
+## What we will do:
+- Add bootstrap to give basic formatting to the page : We use bootstrap classes container,table and table-striped.
+- We will use webjars
+ - Already auto configured by Spring Boot : o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+# add mentioned dependency
+
+```     
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+        
+  		
+  
+		<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+	    <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	    		rel="stylesheet">
+```
+# @PostConstruct
+The PostConstruct annotation is used on a method thatneeds to be executed after dependency injection is done to performany initialization. This method must be invoked before the classis put into service. This annotation must be supported on all classesthat support dependency injection. The method annotated with PostConstruct must be invoked even if the class doesnot request any resources to be injected. Only onemethod in a given class can be annotated with this annotation. 
+
+Parsing a file means reading in a data stream of some sort and building an in memory model of the semantic content of that data.
   
