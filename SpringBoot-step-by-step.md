@@ -16,3 +16,15 @@
        * Add this line inside  showTodos() of TodoController class
       ` String name =  (String)model.get("name");`
       `model.put("todos", service.retrieveTodos(name)); `
+  
+  
+  8. 
+  Add the link below in head tag 
+  `<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	    		rel="stylesheet">`
+
+
+   * Add link belw in end of body tag: 
+   
+             `<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+	     <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>`
