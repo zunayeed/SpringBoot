@@ -28,3 +28,34 @@
    
              `<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 	     <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>`
+	     
+9.  in list todo.jsp  for validation 
+
+``` 
+	<form method="post">
+	<fieldset class="form-group">
+		<label>Description</label>
+		<input name="desc" type="text" class="form-control" required="required"/>
+	</fieldset>
+		
+       <button type = "submit" class ="btn btn-succss" >Add</button>/>
+       </form>
+```
+
+10. 
+   *   Update todo controller and add tag libtary
+- Command Bean or Form Backing Bean: use of bean instrad of requestparam : 
+Inorder to use comand bean, two things need to be done: 
+aController
+b View - Spring Form Tags
+-  Purpose: you want to get add user infor as part of todo object we use command bean
+- Add Validations
+- The JSR 303 and JSR 349 defines specification for the Bean Validation API (version 1.0 and 1.1, respectively), and Hibernate Validator is the reference implementation.
+- org.hibernate:hibernate-validator
+ In summary: 
+   instead of @requestparam, use Todo to and in the body use todo.getDesc()
+   
+  11  in jsp change name attribute  to path 
+     and add form tag in form  label 
+     also use modelAttribute
+   path attribute is usee to access variable directly from java 
