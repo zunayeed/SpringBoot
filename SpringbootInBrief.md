@@ -51,8 +51,10 @@ spring is popular because
 
 - Maven is used to manage the dependency of Java projects 
 - Springboot is one of the most popular spring framework to develop micro services.
-- Group Id: package name 
-- Artifact Id: class name
+
+
+# Group Id: package name 
+# Artifact Id: Project name 
 - SpringApplication.run launches a Springboot Application
 - `spring-boot-starter-parent` has all default configuration of all important maven dependencies
 - Spring Boot Starter Web provides: 1) all dependies to run web applications: core, mvc, validation,login 
@@ -592,4 +594,27 @@ Here are a few interesting advantages of WebJars:
 The PostConstruct annotation is used on a method thatneeds to be executed after dependency injection is done to performany initialization. This method must be invoked before the classis put into service. This annotation must be supported on all classesthat support dependency injection. The method annotated with PostConstruct must be invoked even if the class doesnot request any resources to be injected. Only onemethod in a given class can be annotated with this annotation. 
 
 Parsing a file means reading in a data stream of some sort and building an in memory model of the semantic content of that data.
+
+
+# Survey 
+# Differences between @RequestParam and @PathVariable annotations in Spring MVC?
+
+As the name suggests, @RequestParam is used to get the request parameters from URL, also known as query parameters, while @PathVariable extracts values from URI.
+
+The Spring MVC framework, one of the most popular frameworks for developing a web application in Java world also provides several useful annotations to extract data from the incoming request and mapping the request to the controller, e.g., @RequestMapping, @RequestParam, and @PathVariable. Even though both @RequestParam and @PathVariable is used to extract values from the HTTP request
+
+For example, if the incoming HTTP request to retrieve a book on topic "Java" is 
+# http://localhost:8080/shop/order/1001/receipts?date=12-05-2017, #
+
+then you can use the @RequestParam annotation to retrieve the query parameter date and you can use @PathVariable to extract the orderId i.e. "1001" as shown below:
+
+@RequestMapping(value="/order/{orderId}/receipts", method = RequestMethod.GET)
+public List listUsersInvoices(@PathVariable("orderId") int order,
+                              @RequestParam(value = "date", required = false) Date dateOrNull) {
+...
+}
+
+The required=false denotes that the query parameter can be optional, but the URL must have the same URI.
+
+
   
