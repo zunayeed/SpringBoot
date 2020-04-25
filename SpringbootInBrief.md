@@ -616,5 +616,31 @@ public List listUsersInvoices(@PathVariable("orderId") int order,
 
 The required=false denotes that the query parameter can be optional, but the URL must have the same URI.
 
+What is REST?
+Architectural style for the web. REST specifies a set of constraints.
+Client - Server : Server (service provider) should be different from a client (service consumer).
+Enables loose coupling and independent evolution of server and client as new technologies emerge.
+Each service should be stateless.
+Each Resource has a resource identifier.
+It should be possible to cache response.
+Consumer of the service may not have a direct connection to the Service Provider. Response might be sent from a middle layer cache.
+A resource can have multiple representations. Resource can modified through a message in any of the these representations.
 
+
+- Adding the second method to rest service to retrieve a specific question
+- This will be a very short step
+- http://localhost:8080/surveys/Survey1/questions/Question1
+- Different Request Methods
+  - GET - Retrieve details of a resource
+  - POST - Create a new resource
+  - PUT	- Update an existing resource
+  - PATCH - Update part of a resource
+  - DELETE - Delete a resource
+  
+ # public class ServletUriComponentsBuilder
+extends UriComponentsBuilder
+- UriComponentsBuilder with additional static factory methods to create links based on the current HttpServletRequest.
+
+# static ServletUriComponentsBuilder	fromCurrentRequest()
+- Same as fromRequest(HttpServletRequest) except the request is obtained through RequestContextHolder.
   
